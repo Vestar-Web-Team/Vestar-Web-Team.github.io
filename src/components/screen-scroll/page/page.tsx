@@ -1,7 +1,7 @@
 import {PropsWithChildren} from 'react';
 
 export type IPageProps = PropsWithChildren<{
-    className: string;
+    className?: string;
 }>;
 
 export default function Page({children, className}: IPageProps) {

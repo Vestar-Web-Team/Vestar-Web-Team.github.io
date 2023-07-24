@@ -1,9 +1,9 @@
-import { WheelEventHandler, WheelEvent, PointerEvent, useState, ReactNode, useCallback } from "react";
+import { WheelEventHandler, WheelEvent, PointerEvent, useState, useCallback, ReactNode } from "react";
 import { throttle } from 'lodash';
 import range from "@/scripts/util/range";
 
 export interface IScreenScrollManagerProps {
-    children?: ReactNode[];
+    children?: ReactNode;
 }
 
 export default function ScreenScrollManager({ children }: IScreenScrollManagerProps) {
@@ -12,7 +12,7 @@ export default function ScreenScrollManager({ children }: IScreenScrollManagerPr
     const [pointerStartPositionY, setPointerStartPositionY] = useState<number>(0);
 
     const addPage = useCallback(throttle((page: number=1) => {
-        setPage(prev => range(prev + page, 0, children?.length ? children.length - 1 : 0));
+        setPage(prev => range(prev + page, 0, (children as ReactNode[])?.length ? (children as ReactNode[]).length - 1 : 0));
     }, 800), []);
 
     const subPage = () => addPage(-1);
