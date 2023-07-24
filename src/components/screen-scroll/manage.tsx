@@ -1,4 +1,4 @@
-import { WheelEventHandler, WheelEvent, PointerEvent, useState, ReactNode } from "react";
+import { WheelEventHandler, WheelEvent, PointerEvent, useState, ReactNode, useCallback } from "react";
 import { throttle } from 'lodash';
 import range from "@/scripts/util/range";
 
@@ -11,29 +11,34 @@ export default function ScreenScrollManager({ children }: IScreenScrollManagerPr
     const [dragging, setDragging] = useState<boolean>(false);
     const [pointerStartPositionY, setPointerStartPositionY] = useState<number>(0);
 
-    function addPage() {
-        setPage(prev => range(prev + 1, 0, children?.length ? children.length - 1 : 0));
-    }
+    const addPage = useCallback(throttle((page: number=1) => {
+        setPage(prev => range(prev + page, 0, children?.length ? children.length - 1 : 0));
+    }, 800), []);
 
-    function subPage() {
-        setPage(prev => range(prev - 1, 0, children?.length ? children.length - 1 : 0));
-    }
+    const subPage = () => addPage(-1);
 
-    const onWheelHandler: WheelEventHandler<HTMLDivElement> = throttle((ev: WheelEvent<HTMLDivElement>) => {
-        const offset = ev.deltaY > 0 ? addPage() : subPage();
-    }, 500);
+    const onWheelHandler: WheelEventHandler<HTMLDivElement> = (ev: WheelEvent<HTMLDivElement>) => {
+        ev.deltaY > 0 ? addPage() : subPage();
+    };
 
     const onPointerDownHandler = (ev: PointerEvent<HTMLDivElement>) => {
+        if (ev.pointerType === 'mouse') return;
         setDragging(true)
         setPointerStartPositionY(ev.screenY);
     };
     const onPointerMoveHandler = (ev: PointerEvent<HTMLDivElement>) => {
-        if (!dragging) return;
+        if (!dragging || ev.pointerType === 'mouse') return;
         const offset = ev.screenY - pointerStartPositionY;
 
         const scrollOffset = 80;
-        if (offset <= scrollOffset) addPage();
-        else if (offset >= scrollOffset) subPage();
+        if (offset <= -scrollOffset) {
+            addPage();
+            setDragging(false);
+        }
+        else if (offset >= scrollOffset) {
+            subPage();
+            setDragging(false);
+        }
     };
     const onPointerUpHandler = () => setDragging(false);
 
