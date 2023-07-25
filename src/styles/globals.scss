@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  outline: none;
+}
+
 html, body {
   width: 100%;
   height: 100vh;
   height: 100dvh;
+  color: white;
+}
+
+img {
+  -webkit-user-drag: none;
 }

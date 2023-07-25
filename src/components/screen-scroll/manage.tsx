@@ -1,18 +1,46 @@
-import { WheelEventHandler, WheelEvent, PointerEvent, useState, useCallback, ReactNode } from "react";
+import { WheelEventHandler, WheelEvent, PointerEvent, useState, useCallback, ReactNode, useMemo, useEffect } from "react";
 import { throttle } from 'lodash';
 import range from "@/scripts/util/range";
 
-export interface IScreenScrollManagerProps {
-    children?: ReactNode;
+export interface IScreenScrollPage {
+    height?: number | `${number}px` | `${number}%` | `${number}rem` | `${number}em` | `${number}vh` | `${number}dvh`;
+    content: ReactNode;
+    key: string;
 }
 
-export default function ScreenScrollManager({ children }: IScreenScrollManagerProps) {
-    const [page, setPage] = useState<number>(0);
+export interface IScreenScrollManagerProps {
+    pages?: IScreenScrollPage[];
+    defaultPage?: string;
+    page?: string;
+    onChange?: (pageIndex: number) => void;
+}
+
+export default function ScreenScrollManager(props: IScreenScrollManagerProps) {
+    const { pages = [], defaultPage = '', page = defaultPage, onChange } = props;
+    const pageIndex = useMemo(() => pages.findIndex(p => p.key === page), [page, pages]);
+
+    function getPage(page: number): number {
+        return range(page, 0, pages.length ? pages.length - 1 : 0);
+    }
+
     const [dragging, setDragging] = useState<boolean>(false);
     const [pointerStartPositionY, setPointerStartPositionY] = useState<number>(0);
 
-    const addPage = useCallback(throttle((page: number=1) => {
-        setPage(prev => range(prev + page, 0, (children as ReactNode[])?.length ? (children as ReactNode[]).length - 1 : 0));
+    const translateY = useMemo(() => {
+        let offset = '0px';
+
+        for (let i = 1; i < pages.length; i++) {
+            if (i - 1 === pageIndex) break;
+            const p = pages[i];
+            const height = (typeof p.height === 'number' ? `${p.height}px` : p.height) || '100vh';
+            offset += ` - ${height}`;
+        }
+        return offset;
+    }, [pageIndex, pages]);
+
+    const addPage = useCallback(throttle((page: number = 1) => {
+        const newPage = getPage(page + page);
+        onChange?.(newPage);
     }, 800), []);
 
     const subPage = () => addPage(-1);
@@ -47,8 +75,8 @@ export default function ScreenScrollManager({ children }: IScreenScrollManagerPr
         onPointerUp={onPointerUpHandler}
         onPointerMove={onPointerMoveHandler}
         onWheel={onWheelHandler}>
-        <div className="h-auto transition-transform duration-300 ease-in-out" style={{ transform: `translateY(-${100 * page}vh)` }}>
-            {children}
+        <div className="h-auto transition-transform duration-300 ease-in-out" style={{ transform: `translateY(calc(${translateY}))` }}>
+            {pages.map(page => <div key={page.key} className="w-auto h-auto">{page.content}</div>)}
         </div>
     </div>;
 }

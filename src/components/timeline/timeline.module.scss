@@ -1,0 +1,15 @@
+.option::before {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: .75rem;
+    height: .75rem;
+    background-color: #bebee8;
+    border-radius: 100%;
+}
+
+.star {
+    transition: top .3s ease-in-out;
+}
