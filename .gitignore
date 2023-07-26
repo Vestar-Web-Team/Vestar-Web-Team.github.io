@@ -35,5 +35,5 @@ yarn-error.log*
 next-env.d.ts
 
 # 工程文件
-assets-documents
-assets-documents/*
+/assets-documents
+/assets-documents/*
