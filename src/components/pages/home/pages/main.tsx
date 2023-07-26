@@ -24,7 +24,7 @@ export const sprites: ISpriteInfo[] = [
     {
         key: "fen",
         label: '昐',
-        path: publicUse("/images/sprites/fen.png"),
+        path: "/images/sprites/fen.png",
     },
 ];
 
