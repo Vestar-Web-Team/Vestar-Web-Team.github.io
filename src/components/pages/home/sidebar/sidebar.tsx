@@ -10,7 +10,7 @@ export interface ISidebarProps {
 
 export default function Sidebar({pages=[], page, setPage}: ISidebarProps) {
 
-    return <div className="max-sm:hidden fixed flex flex-col justify-around items-end right-10 h-screen pt-6 pb-6 z-20">
+    return <div className="max-md:hidden fixed flex flex-col justify-around items-end right-10 h-screen pt-6 pb-6 z-20">
         {/* 分享按钮 */}
         <Share></Share>
 

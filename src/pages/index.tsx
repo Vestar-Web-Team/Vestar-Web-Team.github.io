@@ -1,4 +1,4 @@
-import MainPage from "@/components/pages/home/pages/main";
+import MainPage from "@/components/pages/home/pages/main/main";
 import Sidebar from "@/components/pages/home/sidebar/sidebar";
 import ScreenScrollManager, { IScreenScrollPage } from "@/components/screen-scroll/manage";
 import { ITimelineItem } from "@/components/timeline/timeline";

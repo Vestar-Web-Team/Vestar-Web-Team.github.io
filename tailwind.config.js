@@ -13,12 +13,19 @@ module.exports = {
         'primary-950': '#20202c',
         'secondary': '#fdcca6'
       },
+      clipPath: {
+        rhomboid: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+        'rhomboid-rect': 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      height: {
+        'd-screen': ['100vh', '100dvh']
+      }
     },
   },
   plugins: [],
-}
+};
