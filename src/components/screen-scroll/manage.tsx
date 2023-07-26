@@ -58,7 +58,7 @@ export default function ScreenScrollManager(props: IScreenScrollManagerProps) {
         if (!dragging || ev.pointerType === 'mouse') return;
         const offset = ev.screenY - pointerStartPositionY;
 
-        const scrollOffset = 80;
+        const scrollOffset = 6;
         if (offset <= -scrollOffset) {
             addPage();
             setDragging(false);

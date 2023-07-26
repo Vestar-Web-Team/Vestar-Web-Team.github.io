@@ -8,10 +8,13 @@ export type ISvgProps = PropsWithChildren<{
     rootClassName?: string;
 }>;
 
+
+/** 用于呈现svg的组件 */
 export default function Svg({ src, children, style, className, rootClassName }: ISvgProps) {
+    const maskValue = `url(${src})`;
 
     return <div className={mergeClassName(rootClassName?.includes('absolute') || 'relative', rootClassName)} style={style}>
-    <span style={{WebkitMask: `url(${src})`, mask: `url(${src})`}} className={mergeClassName('absolute w-full h-full', className)}/>
+        <span style={{ WebkitMask: maskValue, mask: maskValue }} className={mergeClassName('absolute w-full h-full', className)} />
         {children}
     </div>;
 }
