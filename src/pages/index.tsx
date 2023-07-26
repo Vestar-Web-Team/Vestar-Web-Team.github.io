@@ -25,7 +25,7 @@ export default function Home() {
         <Head>
             <title> Astaeus | 愿尘辉与你闪耀 </title>
         </Head>
-        <main className="w-full h-full bg-[url(/images/bg-decoration.png)] bg-repeat-y bg-[length:100%_auto]">
+        <main className="w-full h-full bg-[url(/images/bg-decoration.png)] select-none bg-repeat-y bg-[length:100%_auto]">
             <Sidebar page={page} pages={pages} setPage={setPage} />
             <ScreenScrollManager page={page} onChange={(p) => setPage(pages[p]?.key)} pages={pages} />
         </main>

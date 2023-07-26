@@ -7,5 +7,5 @@ export type IPageProps = PropsWithChildren<{
 export default function Page({children, className}: IPageProps) {
     
     
-    return <div className={`w-full h-screen ${className}`}>{children}</div>;
+    return <div className={`w-full h-screen overflow-hidden ${className}`}>{children}</div>;
 }

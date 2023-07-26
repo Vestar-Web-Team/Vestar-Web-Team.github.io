@@ -11,7 +11,7 @@ export type IStarProps = PropsWithChildren<{
 
 export default function Star({ children, className, rootClassName, style }: IStarProps) {
 
-    return <div className={mergeClassName(!!rootClassName?.includes('absolute') || 'relative', rootClassName)} style={style}>
+    return <div className={mergeClassName(rootClassName?.includes('absolute') || 'relative', rootClassName)} style={style}>
     <span className={mergeClassName('absolute w-full h-full', styles.star, className)}/>
         {children}
     </div>;
