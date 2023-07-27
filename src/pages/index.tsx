@@ -1,4 +1,4 @@
-import MainPage from "@/components/pages/home/pages/main";
+import MainPage from "@/components/pages/home/pages/main/main";
 import Sidebar from "@/components/pages/home/sidebar/sidebar";
 import ScreenScrollManager, { IScreenScrollPage } from "@/components/screen-scroll/manage";
 import { ITimelineItem } from "@/components/timeline/timeline";
@@ -26,7 +26,7 @@ export default function Home() {
 
     return <>
         <Head>
-            <title> Astaeus | 愿尘辉与你闪耀 </title>
+            <title> Astraeus | 愿尘辉与你闪耀 </title>
         </Head>
         <main className={`w-full h-full select-none bg-repeat-y bg-[length:100%_auto]`} style={{backgroundImage: `url(${bgDecorationPath})`}}>
             <Sidebar page={page} pages={pages} setPage={setPage} />

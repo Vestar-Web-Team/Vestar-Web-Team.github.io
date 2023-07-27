@@ -51,7 +51,7 @@ export default function ScreenScrollManager(props: IScreenScrollManagerProps) {
 
     const onPointerDownHandler = (ev: PointerEvent<HTMLDivElement>) => {
         if (ev.pointerType === 'mouse') return;
-        setDragging(true)
+        setDragging(true);
         setPointerStartPositionY(ev.screenY);
     };
     const onPointerMoveHandler = (ev: PointerEvent<HTMLDivElement>) => {
@@ -70,7 +70,7 @@ export default function ScreenScrollManager(props: IScreenScrollManagerProps) {
     };
     const onPointerUpHandler = () => setDragging(false);
 
-    return <div className="w-full h-screen overflow-hidden"
+    return <div className="w-full h-d-screen overflow-hidden"
         onPointerDown={onPointerDownHandler}
         onPointerUp={onPointerUpHandler}
         onPointerMove={onPointerMoveHandler}

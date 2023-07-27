@@ -13,5 +13,5 @@ const maskValue = publicUse('/images/star.svg');
 
 export default function Star({ children, className, rootClassName, style }: IStarProps) {
 
-    return <Svg className={className} rootClassName={rootClassName} style={style} src={maskValue}>{children}</Svg>
+    return <Svg className={className} rootClassName={rootClassName} style={style} src={maskValue}>{children}</Svg>;
 }
