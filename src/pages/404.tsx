@@ -1,9 +1,13 @@
-export default function Custom404() {
-	return(
-	<div className={'text-center content-center'}>
-		<h1 className={'text-4xl'}>诶呀！页面不存在！</h1>
-		<h1 className={'text-xl'}>ERROR 404</h1>
-		<button className={'text-xl border-2 border-white rounded-md m-8 p-2'}>回到主页</button>
-	</div>
-	) 
+import Link from "next/link";
+
+export default function ErrorPage404() {
+	return <main className="w-full h-d-screen bg-primary-950">
+		<div className="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+			<div className="flex items-center justify-center mb-1">
+				<h1 className="text-2xl pr-6 font-medium border-r-1 border-primary-300 text-secondary">404</h1>
+				<span className="ml-6 text-white">This page could not be found</span>
+			</div>
+			<Link className="text-center text-sm underline underline-offset-2 text-secondary" href="/">Back to Home</Link>
+		</div>
+	</main>;
 }

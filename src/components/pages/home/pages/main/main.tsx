@@ -4,6 +4,7 @@ import styles from './main.module.scss';
 import Page from "@/components/screen-scroll/page";
 import mergeClassName from "@/scripts/util/merge-class-name";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import StarButton from '@/components/star-button/star-button';
 import Svg from '@/components/svg/svg';
@@ -73,14 +74,20 @@ export default function MainPage() {
             <span className={"max-w-md absolute right-24 translate-x-1/2 text-box bottom-1/3 mr-4 pl-4 pr-4 pt-1 pb-1 text-sm text-white border-secondary"}><TypeText>{dialog}</TypeText></span>
         </div>
 
+        <div className="fixed top-2/3 left-3/4 text-[35vh] -translate-y-1/4 text-primary-700 opacity-75 -z-10 font-black skew-y-6">ASTRAEUS</div>
+
         {/* 下方容器 */}
         <div className='mb-4 flex'>
             <Star className='bg-primary-300' rootClassName='max-md:hidden w-32 h-32 mr-6'>
                 <Image className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 rotate-45' src={publicUse("/images/QR-code-official.png")} alt="官方bilibili音乐账号" width={512} height={512} />
             </Star>
-            <div className='flex flex-col w-36 h-28 mt-4'>
-                <StarButton className='flex items-center justify-evenly h-10 text-white border-secondary' icon={<Svg src={publicUse('/images/bilibili.svg')} className='bg-primary-700' rootClassName='w-4 h-4 absolute top-1/2 left-1/2 -translate-x-full -translate-y-1/2' />}>BiliBili</StarButton>
-                <StarButton className='flex items-center justify-evenly h-10 text-white border-secondary mt-8' icon={<Svg src={publicUse('/images/bilibili.svg')} className='bg-primary-700' rootClassName='w-4 h-4 absolute top-1/2 left-1/2 -translate-x-full -translate-y-1/2' />}>BiliBili</StarButton>
+            <div className='flex flex-col w-36 h-28 mt-2'>
+                <StarButton className='flex items-center justify-evenly h-10 text-white border-secondary' size='w-14 h-14'
+                    icon={<Svg src={publicUse('/images/bilibili.svg')} className='bg-primary-700' rootClassName='w-4 h-4' />}
+                    onClick={() => open("https://space.bilibili.com/1350898383", '_blank')}>
+                    BiliBili
+                </StarButton>
+                <StarButton className='flex items-center justify-evenly h-10 text-white border-secondary mt-8' size='w-14 h-14' icon={<Svg src={publicUse('/images/bilibili.svg')} className='bg-primary-700' rootClassName='w-4 h-4' />}>BiliBili</StarButton>
             </div>
         </div>
     </Page>;

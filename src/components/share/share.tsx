@@ -1,26 +1,33 @@
-import mergeClassName from '@/scripts/util/merge-class-name';
-
-import { Popover } from '@headlessui/react';
-import StarPanel from '../star-panel/star-panel';
 import publicUse from '@/scripts/util/public-use';
+import Svg from '../svg/svg';
+import { useEffect, useState } from 'react';
+import Star from '../star/star';
 
-const shareIconMaskValue = `url(${publicUse('/images/share.svg')})`;
+const copyShareLink = () => {
+    const failedText = '链接复制失败 (っ °Д °;)っ';
+    const res = navigator?.clipboard.writeText(location.href)
+        .then(() => '分享链接已复制 ヾ(•ω•`)o') || failedText;
+
+    return res;
+};
 
 export default function Share() {
+    const [message, setMessage] = useState<string>('');
 
+    useEffect(() => {
+        if (message)
+            setTimeout(() => setMessage(''), 5000);
+    }, [message]);
 
-    return <Popover >
-        {({ open }) => <>
-            <Popover.Button key="share-button" 
-            className={mergeClassName('relative w-8 h-8 p-1 transition-colors duration-300', open ? 'bg-secondary' : 'bg-white')} 
-            style={{WebkitMask: shareIconMaskValue, mask: shareIconMaskValue}}
-            />
-
-            <Popover.Panel className="absolute z-30 right-0 w-32 h-48">
-                <StarPanel className='bg-primary-700' rootClassName='w-full h-full'>
-                    Sth
-                </StarPanel>
-            </Popover.Panel>
-        </>}
-    </Popover>;
+    return <button className='relative' onClick={async () => setMessage(await copyShareLink())}>
+        <Svg key="share-button"
+            src={publicUse('/images/share.svg')}
+            rootClassName='relative w-8 h-8 p-1'
+            className={'bg-white hover:bg-secondary transition-colors duration-200'}
+        />
+        {!!message && <div className="text-box border-secondary absolute text-xs p-2 top-full -right-2 mt-4 z-10 w-fit whitespace-nowrap">
+            <Star className="bg-secondary" rootClassName='absolute top-0 right-1 w-4 h-4 -translate-y-1/2' />
+            {message}
+        </div>}
+    </button>;
 }
