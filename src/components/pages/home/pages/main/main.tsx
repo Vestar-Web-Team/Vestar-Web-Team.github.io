@@ -87,7 +87,11 @@ export default function MainPage() {
                     onClick={() => open("https://space.bilibili.com/1350898383", '_blank')}>
                     BiliBili
                 </StarButton>
-                <StarButton className='flex items-center justify-evenly h-10 text-white border-secondary mt-8' size='w-14 h-14' icon={<Svg src={publicUse('/images/bilibili.svg')} className='bg-primary-700' rootClassName='w-4 h-4' />}>BiliBili</StarButton>
+                <StarButton className='flex items-center justify-evenly h-10 text-white border-secondary mt-8' size='w-14 h-14'
+                    icon={<Svg src={publicUse('/images/bilibili.svg')} className='bg-primary-700' rootClassName='w-4 h-4' />}
+                    onClick={() => open("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=HkI_D693icdfb1PhPG55c3PT4mvLFgqO&authKey=8KSwCtb8rcKtrfUnteiQgHUOHnZUYRknxunVS4HZ%2F3L03160VnUPUQSOK%2BhFQB5Y&noverify=0&group_code=772669347", '_blank')}>
+                    QQ交流群
+                </StarButton>
             </div>
         </div>
     </Page>;
