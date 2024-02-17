@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['ahooks'],
   env: {
-    PUBLIC_FOLDER_PATH: process.env.PUBLIC_FOLDER_PATH || ''
+    PUBLIC_FOLDER_PATH: process.env.PUBLIC_FOLDER_PATH || '',
+    RECORD_NUMBER: process.env.RECORD_NUMBER || 'Error'
   }
 };
 
