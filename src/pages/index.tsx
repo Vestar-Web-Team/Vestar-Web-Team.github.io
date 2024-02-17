@@ -1,3 +1,4 @@
+import Footer from "@/components/pages/home/pages/footer/footer";
 import MainPage from "@/components/pages/home/pages/main/main";
 import Sidebar from "@/components/pages/home/sidebar/sidebar";
 import ScreenScrollManager, { IScreenScrollPage } from "@/components/screen-scroll/manage";
@@ -17,8 +18,14 @@ const pages: (ITimelineItem & IScreenScrollPage)[] = [
     {
         key: 'setting',
         label: '设定',
-        content: null
-    }
+        content: <div className="h-screen"></div>
+    },
+    {
+        key: 'footer',
+        label: '页脚',
+        height: '16rem',
+        content: <Footer />
+    },
 ];
 
 export default function Home() {

@@ -1,6 +1,6 @@
 import { WheelEventHandler, WheelEvent, PointerEvent, useState, useCallback, ReactNode, useMemo, useEffect } from "react";
-import { throttle } from 'lodash';
 import range from "@/scripts/util/range";
+import { useThrottleFn } from "ahooks";
 
 export interface IScreenScrollPage {
     height?: number | `${number}px` | `${number}%` | `${number}rem` | `${number}em` | `${number}vh` | `${number}dvh`;
@@ -38,10 +38,10 @@ export default function ScreenScrollManager(props: IScreenScrollManagerProps) {
         return offset;
     }, [pageIndex, pages]);
 
-    const addPage = useCallback(throttle((page: number = 1) => {
-        const newPage = getPage(page + page);
+    const { run: addPage } = useThrottleFn((page: number = 1) => {
+        const newPage = getPage(pageIndex + page);
         onChange?.(newPage);
-    }, 800), []);
+    }, { wait: 600 });
 
     const subPage = () => addPage(-1);
 
@@ -76,7 +76,7 @@ export default function ScreenScrollManager(props: IScreenScrollManagerProps) {
         onPointerMove={onPointerMoveHandler}
         onWheel={onWheelHandler}>
         <div className="h-auto transition-transform duration-300 ease-in-out" style={{ transform: `translateY(calc(${translateY}))` }}>
-            {pages.map(page => <div key={page.key} className="w-auto h-auto">{page.content}</div>)}
+            {pages.map(page => <div key={page.key} className="relative w-auto h-auto">{page.content}</div>)}
         </div>
     </div>;
 }

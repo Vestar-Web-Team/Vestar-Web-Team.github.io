@@ -51,7 +51,7 @@ export default function MainPage() {
 
     useEffect(() => updateDialog(spriteInfo?.dialogs), [spriteInfo]);
 
-    return <Page className="pt-6 pl-4 flex flex-col justify-between max-w-sm">
+    return <Page className="w-full h-screen pt-6 pl-4 flex flex-col justify-between max-w-sm">
         {/* 上方的元素容器 */}
         <Image
             className="w-fit max-lg:h-20 max-md:h-16 max-sm:h-14 object-cover object-left-top"
