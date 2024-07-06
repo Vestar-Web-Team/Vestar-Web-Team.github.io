@@ -22,7 +22,7 @@ export interface ISpriteInfo {
     /** 图片路径 */
     path: string;
     /** 对话 */
-    dialogs?: string[];
+    albums?: string[];
 }
 
 export const sprites: ISpriteInfo[] = [
@@ -30,7 +30,7 @@ export const sprites: ISpriteInfo[] = [
         key: "fen",
         label: '昐',
         path: "/images/sprites/fen.png",
-        dialogs: ["Hello Astraeus!", "My name is Fen.", "......"]
+        albums: ["Hello Astraeus!", "My name is Fen.", "......"]
     },
 ];
 
@@ -49,7 +49,7 @@ export default function AlbumPage() {
         });
     }
 
-    useEffect(() => updateDialog(spriteInfo?.dialogs), [spriteInfo]);
+    useEffect(() => updateDialog(spriteInfo?.albums), [spriteInfo]);
 
     return <Page className="w-full h-screen pt-6 pl-4 flex flex-col justify-between max-w-sm">
         {/* 上方的元素容器 */}
@@ -62,7 +62,7 @@ export default function AlbumPage() {
         />
 
         {/* 立绘 */}
-        <div className="absolute left-0 bottom-0 h-5/6" onClick={() => updateDialog(spriteInfo?.dialogs)}>
+        <div className="absolute left-0 bottom-0 h-5/6" onClick={() => updateDialog(spriteInfo?.albums)}>
             <Image
                 className={mergeClassName("w-fit max-w-full h-full object-cover object-center", styles.sprite)}
                 src={publicUse(spriteInfo?.path || '')}
