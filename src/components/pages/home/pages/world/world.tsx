@@ -1,5 +1,5 @@
 import Star from '@/components/star/star';
-import styles from './main.module.scss';
+import styles from './world.module.scss';
 
 import Page from "@/components/screen-scroll/page";
 import mergeClassName from "@/scripts/util/merge-class-name";
@@ -34,7 +34,7 @@ export const sprites: ISpriteInfo[] = [
     },
 ];
 
-export default function MainPage() {
+export default function WorldPage() {
     const [sprite, setSprite] = useState<string>('fen');
     const [dialog, setDialog] = useState<string>('');
 
