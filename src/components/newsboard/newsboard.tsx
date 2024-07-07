@@ -3,33 +3,24 @@ import Svg from '../svg/svg';
 import { useEffect, useState } from 'react';
 import Star from '../star/star';
 import NewsboardBarBtn from '../newsboard-bar-button/newsboard-bar-button';
-
-const copyShareLink = () => {
-    const failedText = '链接复制失败 (っ °Д °;)っ';
-    const res = navigator?.clipboard.writeText(location.href)
-        .then(() => '分享链接已复制 ヾ(•ω•`)o') || failedText;
-
-    return res;
-};
+import Newsline from '@/components/newsline/newsline';
 
 export default function Newsboard() {
     const [message, setMessage] = useState<string>('');
-    const newsbar = ["最新","公告","活动","新闻"];
+    const newsdata = {
+        presentDate:"2024 // 7 / 7",
+        data:[
+            {id:1,type:"公告",date:"2024 // 7 / 7",title:"【Vestar】新版本更新",content:"Vestar新版本更新啦！快来看看吧！",link:"/news/notice/1"},
+            {id:2,type:"公告",date:"2024 // 7 / 7",title:"【Vestar】新版本更新",content:"Vestar新版本更新啦！快来看看吧！",link:"/news/notice/2"},
+            {id:3,type:"活动",date:"2024 // 7 / 7",title:"【Vestar】新版本活动",content:"Vestar新版本活动啦！快来看看吧！",link:"/news/event/1"},            
+            {id:4,type:"公告",date:"2024 // 7 / 7",title:"【Vestar】新版本活动",content:"Vestar新版本活动啦！快来看看吧！",link:"/news/notice/3"},
+            {id:5,type:"新闻",date:"2024 // 7 / 7",title:"【Vestar】新版本资讯",content:"Vestar新版本更新啦！快来看看吧！",link:"/news/spot/1"},
+        ]
+    };
 
-    useEffect(() => {
-        if (message)
-            setTimeout(() => setMessage(''), 5000);
-    }, [message]);
-
-    return <button className='relative' onClick={async () => setMessage(await copyShareLink())}>
-        <Svg key="share-button"
-            src={publicUse('/images/share.svg')}
-            rootClassName='relative w-8 h-8 p-1'
-            className={'bg-white hover:bg-secondary transition-colors duration-200'}
-        />
-        {!!message && <div className="text-box border-secondary absolute text-xs p-2 top-full -right-2 mt-4 z-10 w-fit whitespace-nowrap">
-            <Star className="bg-secondary" rootClassName='absolute top-0 right-1 w-4 h-4 -translate-y-1/2' />
-            {message}
-        </div>}
-    </button>;
+    return <div className='h-full w-full flex-col'>
+        <Newsline NLtype={newsdata.data[0].type} NLdate={newsdata.data[0].date} NLtitle={newsdata.data[0].title} NLcontent={newsdata.data[0].content} NLlink={newsdata.data[0].link}></Newsline>
+        <Newsline NLtype={newsdata.data[2].type} NLdate={newsdata.data[2].date} NLtitle={newsdata.data[2].title} NLcontent={newsdata.data[2].content} NLlink={newsdata.data[2].link}></Newsline>
+        <Newsline NLtype={newsdata.data[4].type} NLdate={newsdata.data[4].date} NLtitle={newsdata.data[4].title} NLcontent={newsdata.data[4].content} NLlink={newsdata.data[4].link}></Newsline>
+    </div>;
 }
