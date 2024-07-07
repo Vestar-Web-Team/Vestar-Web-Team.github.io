@@ -23,6 +23,7 @@ export interface ISpriteInfo {
     path: string;
     /** 对话 */
     dialogs?: string[];
+    newsdata?: object;
 }
 
 export const sprites: ISpriteInfo[] = [
@@ -30,7 +31,17 @@ export const sprites: ISpriteInfo[] = [
         key: "fen",
         label: '昐',
         path: "/images/sprites/fen.png",
-        dialogs: ["Hello Astraeus!", "My name is Fen.", "......"]
+        dialogs: ["Hello Astraeus!", "My name is Fen.", "......"],
+        newsdata: {
+            presentDate:"2024 // 7 / 7",
+            data:[
+                {id:1,type:"公告",date:"2024 // 7 / 7",title:"【Vestar】新版本更新",content:"Vestar新版本更新啦！快来看看吧！",link:"/news/notice/1"},
+                {id:2,type:"公告",date:"2024 // 7 / 7",title:"【Vestar】新版本更新",content:"Vestar新版本更新啦！快来看看吧！",link:"/news/notice/2"},
+                {id:3,type:"活动",date:"2024 // 7 / 7",title:"【Vestar】新版本活动",content:"Vestar新版本活动啦！快来看看吧！",link:"/news/event/1"},            
+                {id:4,type:"公告",date:"2024 // 7 / 7",title:"【Vestar】新版本活动",content:"Vestar新版本活动啦！快来看看吧！",link:"/news/notice/3"},
+                {id:5,type:"新闻",date:"2024 // 7 / 7",title:"【Vestar】新版本资讯",content:"Vestar新版本更新啦！快来看看吧！",link:"/news/spot/1"},
+            ]
+        }
     },
 ];
 
