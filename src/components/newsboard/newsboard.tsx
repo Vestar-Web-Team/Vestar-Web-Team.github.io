@@ -10,7 +10,7 @@ export interface ISpriteInfo {
     key: string;
     /** 显示名 */
     label: string;
-    /** 图片路径 */
+    /** 情报数据传参 */
     NLnewsdata: object[];
 }
 
