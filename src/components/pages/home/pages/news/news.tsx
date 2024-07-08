@@ -73,14 +73,8 @@ export default function NewsPage() {
             height={512}
         />
 
-        {/* 立绘 */}
-        <div className="absolute left-0 bottom-0 h-5/6" onClick={() => updateDialog(spriteInfo?.dialogs)}>
-        </div>
-
-        <div className="fixed top-2/3 left-3/4 text-[35vh] -translate-y-1/4 text-primary-700 opacity-75 -z-10 font-black skew-y-6">ASTRAEUS</div>
-
         {/* 下方容器 */}
-        <div className='mb-4 flex'>
+        <div className='mb-4 mx-2 flex'>
             <Newsboard></Newsboard>
         </div>
     </Page>;
