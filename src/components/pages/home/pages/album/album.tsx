@@ -71,7 +71,7 @@ export default function AlbumPage() {
 
         {/* 下方容器 */}
         <div className='mb-4 flex'>
-            <LongPlay link="https://space.bilibili.com/630837548"></LongPlay>
+            <LongPlay link="https://space.bilibili.com/630837548" animate={false} ></LongPlay>
         </div>
     </Page>;
 }
