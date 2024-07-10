@@ -64,7 +64,7 @@ export default function NewsPage() {
 
     useEffect(() => updateDialog(spriteInfo?.dialogs), [spriteInfo]);
 
-    return <Page className="w-full h-screen pt-6 pl-4 flex flex-rol justify-between">
+    return <Page className="w-full h-screen pt-6 pl-4 flex flex-rol sm:justify-center max-md:justify-between">
         {/* 左侧的元素容器 */}
         <div className="h-screen max-w-sm  flex flex-col justify-evenly">
 
