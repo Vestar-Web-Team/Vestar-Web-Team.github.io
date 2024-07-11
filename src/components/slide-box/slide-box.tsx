@@ -21,11 +21,11 @@ export default function SlideBox() {
     const slideboxItem = {
         default: "",
         data: [
-            { id: 1, type: "公告", title: "【Vestar】新版本更新", src: "/images/album/cover/agnostic.png", link: "/news/notice/1" },
-            { id: 2, type: "公告", title: "【Vestar】新版本更新", src: "/images/album/cover/conscious_of_reality.jpg", link: "/news/notice/2" },
-            { id: 3, type: "活动", title: "【Vestar】新版本活动", src: "/images/album/cover/Tears of Angel.jpg", link: "/news/event/1" },
-            { id: 4, type: "公告", title: "【Vestar】新版本活动", src: "/images/album/cover/To_this_not_so_beautiful_world.jpg", link: "/news/notice/3" },
-            { id: 5, type: "新闻", title: "【Vestar】新版本资讯", src: "/images/album/cover/固执己见.jpg", link: "/news/spot/1" },
+            { id: 1, date:"2024071101", type: "公告", title: "【Vestar】新版本更新", src: "/images/album/cover/agnostic.png", link: "/news/notice/1" },
+            { id: 2, date:"2024071102", type: "公告", title: "【Vestar】新版本更新", src: "/images/album/cover/conscious_of_reality.jpg", link: "/news/notice/2" },
+            { id: 3, date:"2024071103", type: "活动", title: "【Vestar】新版本活动", src: "/images/album/cover/Tears of Angel.jpg", link: "/news/event/1" },
+            { id: 4, date:"2024071104", type: "公告", title: "【Vestar】新版本活动", src: "/images/album/cover/To_this_not_so_beautiful_world.jpg", link: "/news/notice/3" },
+            { id: 5, date:"2024071105", type: "新闻", title: "【Vestar】新版本资讯", src: "/images/album/cover/固执己见.jpg", link: "/news/spot/1" },
         ]
     };
     const slider  = useSlider(slideboxItem.data.length);
@@ -59,7 +59,7 @@ export default function SlideBox() {
     return <div className={mergeClassName('h-min overflow-y-hidden',styles.rmsb)}>
         <div className={mergeClassName('float-left overflow-x-scroll overflow-y-hidden max-h-min', styles.inner)} style={{ width: `${slideboxItem.data.length * 100}%`, transform: `translateX(-${100*slider / slideboxItem.data.length}%)` }}>
             {slideboxItem.data.map((item) =>
-                <button className='overflow-y-hidden h-full' style={{ width: `${100 / slideboxItem.data.length}%` }} onClick={() => open(item.link, '_blank')}>
+                <button id={item.date} className='overflow-y-hidden h-full' style={{ width: `${100 / slideboxItem.data.length}%` }} onClick={() => open(item.link, '_blank')}>
                     <Image
                         className="object-cover float-start block h-full"
                         src={publicUse(item.src)}
