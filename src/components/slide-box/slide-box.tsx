@@ -21,14 +21,15 @@ export default function SlideBox() {
     const slideboxItem = {
         default: "",
         data: [
-            { id: 1, date:"2024071101", type: "公告", title: "【Vestar】新版本更新", src: "/images/album/cover/agnostic.png", link: "/news/notice/1" },
-            { id: 2, date:"2024071102", type: "公告", title: "【Vestar】新版本更新", src: "/images/album/cover/conscious_of_reality.jpg", link: "/news/notice/2" },
-            { id: 3, date:"2024071103", type: "活动", title: "【Vestar】新版本活动", src: "/images/album/cover/Tears of Angel.jpg", link: "/news/event/1" },
-            { id: 4, date:"2024071104", type: "公告", title: "【Vestar】新版本活动", src: "/images/album/cover/To_this_not_so_beautiful_world.jpg", link: "/news/notice/3" },
-            { id: 5, date:"2024071105", type: "新闻", title: "【Vestar】新版本资讯", src: "/images/album/cover/固执己见.jpg", link: "/news/spot/1" },
+            { id: 1, key: "2024071101", type: "公告", label: '', content: <div />, title: "【Vestar】新版本更新", src: "/images/album/cover/agnostic.png", link: "/news/notice/1" },
+            { id: 2, key: "2024071102", type: "公告", label: '', content: <div />, title: "【Vestar】新版本更新", src: "/images/album/cover/conscious_of_reality.jpg", link: "/news/notice/2" },
+            { id: 3, key: "2024071103", type: "活动", label: '', content: <div />, title: "【Vestar】新版本活动", src: "/images/album/cover/Tears of Angel.jpg", link: "/news/event/1" },
+            { id: 4, key: "2024071104", type: "公告", label: '', content: <div />, title: "【Vestar】新版本活动", src: "/images/album/cover/To_this_not_so_beautiful_world.jpg", link: "/news/notice/3" },
+            { id: 5, key: "2024071105", type: "新闻", label: '', content: <div />, title: "【Vestar】新版本资讯", src: "/images/album/cover/固执己见.jpg", link: "/news/spot/1" },
         ]
     };
-    const slider  = useSlider(slideboxItem.data.length);
+    const slider = useSlider(slideboxItem.data.length);
+    const [page, setPage] = useState<string>(slideboxItem.data[0]?.key || '');
 
     /**
      * 提供基于时间间隔反复调用callback的hook
@@ -44,22 +45,22 @@ export default function SlideBox() {
                 callback(new Date().getTime() - start);
             }, interval)
             return () => clearInterval(I);
-        },[])
+        }, [])
     }
-    
-    function useSlider(N:number,speed = 3000){
+
+    function useSlider(N: number, speed = 3000) {
         const [slider, setSlider] = useState(0);
-        useInterval((diff:number) => {
+        useInterval((diff: number) => {
             setSlider(_ => Math.floor(diff / speed) % N)
         }, 300)
         return slider;
 
     }
 
-    return <div className={mergeClassName('h-min overflow-y-hidden',styles.rmsb)}>
-        <div className={mergeClassName('float-left overflow-x-scroll overflow-y-hidden max-h-min', styles.inner)} style={{ width: `${slideboxItem.data.length * 100}%`, transform: `translateX(-${100*slider / slideboxItem.data.length}%)` }}>
+    return <div className={mergeClassName('relative h-min overflow-y-hidden', styles.rmsb)}>
+        <div className={mergeClassName('float-left overflow-x-scroll overflow-y-hidden max-h-min', styles.inner)} style={{ width: `${slideboxItem.data.length * 100}%`, transform: `translateX(-${100 * slider / slideboxItem.data.length}%)` }}>
             {slideboxItem.data.map((item) =>
-                <button id={item.date} className='overflow-y-hidden h-full' style={{ width: `${100 / slideboxItem.data.length}%` }} onClick={() => open(item.link, '_blank')}>
+                <button id={item.key} className='overflow-y-hidden h-full' style={{ width: `${100 / slideboxItem.data.length}%` }} onClick={() => open(item.link, '_blank')}>
                     <Image
                         className="object-cover float-start block h-full"
                         src={publicUse(item.src)}
@@ -70,6 +71,10 @@ export default function SlideBox() {
                     />
                 </button>
             )}
+        </div>
+
+        <div className='absolute bottom-0 left-0 h-12 w-full bg-white transition-opacity opacity-25 hover:opacity-100'>
+            
         </div>
     </div>;
 }
