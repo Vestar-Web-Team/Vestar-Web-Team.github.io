@@ -7,6 +7,7 @@ import Newsline from '@/components/newsline/newsline';
 import Image from 'next/image';
 import mergeClassName from "@/scripts/util/merge-class-name";
 import styles from './slide-box.module.scss';
+import SlideBoxIDot from '../slide-box-indexdot/slide-box-indexdot';
 
 export interface ISpriteInfo {
     /** 唯一值 */
@@ -28,8 +29,9 @@ export default function SlideBox() {
             { id: 5, key: "2024071105", type: "新闻", label: '', content: <div />, title: "【Vestar】新版本资讯", src: "/images/album/cover/固执己见.jpg", link: "/news/spot/1" },
         ]
     };
-    const slider = useSlider(slideboxItem.data.length);
-    const [page, setPage] = useState<string>(slideboxItem.data[0]?.key || '');
+
+    const [manualswitch, manualSwitch] = useState(-1);
+    const slider = useSlider(slideboxItem.data.length, manualswitch);
 
     /**
      * 提供基于时间间隔反复调用callback的hook
@@ -37,6 +39,16 @@ export default function SlideBox() {
      * @param {*} interval
      * 抄的作业：https://www.bilibili.com/video/BV1MC4y1x75s
      **/
+
+    function delay(n: number) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, n * 1000);
+        });
+    }
+
+    function handleClick(id: number) {
+        manualSwitch(id);
+    }
 
     function useInterval(callback: any, interval: any) {
         useEffect(() => {
@@ -48,13 +60,27 @@ export default function SlideBox() {
         }, [])
     }
 
-    function useSlider(N: number, speed = 3000) {
+    function useSlider(N: number, mns: number, speed = 4000) {
         const [slider, setSlider] = useState(0);
-        useInterval((diff: number) => {
-            setSlider(_ => Math.floor(diff / speed) % N)
-        }, 300)
-        return slider;
+        const [slideswitch, setSlideSwitch] = useState(true);
 
+        if (mns === -1) {
+            useInterval((diff: number) => {
+                if (slideswitch) {
+                    setSlider(_ => (Math.floor((diff / speed))) % N)
+                }
+            }, 4000)
+
+            return slider;
+
+        } else {
+            setSlideSwitch(false);
+            setSlider(mns);
+            delay(3);
+            manualSwitch(-1);
+            setSlideSwitch(true);
+            return slider;
+        }
     }
 
     return <div className={mergeClassName('relative h-min overflow-y-hidden', styles.rmsb)}>
@@ -73,8 +99,14 @@ export default function SlideBox() {
             )}
         </div>
 
-        <div className='absolute bottom-0 left-0 h-12 w-full bg-white transition-opacity opacity-25 hover:opacity-100'>
-            
+        <div className='absolute bottom-0 left-0 h-1/6 w-full transition-opacity opacity-75 hover:opacity-100'>
+            <div className='flex w-full h-5/6 justify-center place-content-center transition hover:bg-primary-300/25'>
+                {slideboxItem.data.map((item) =>
+                    <button onClick={() => handleClick(item.id - 1)}>
+                        <SlideBoxIDot key={"btn_" + item.key} ifSelected={slider === item.id - 1}></SlideBoxIDot>
+                    </button>
+                )}
+            </div>
         </div>
     </div>;
 }
