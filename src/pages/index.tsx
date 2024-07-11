@@ -1,5 +1,8 @@
 import Footer from "@/components/pages/home/pages/footer/footer";
 import MainPage from "@/components/pages/home/pages/main/main";
+import NewsPage from "@/components/pages/home/pages/news/news";
+import WorldPage from "@/components/pages/home/pages/world/world";
+import AlbumPage from "@/components/pages/home/pages/album/album";
 import Sidebar from "@/components/pages/home/sidebar/sidebar";
 import ScreenScrollManager, { IScreenScrollPage } from "@/components/screen-scroll/manage";
 import { ITimelineItem } from "@/components/timeline/timeline";
@@ -16,9 +19,19 @@ const pages: (ITimelineItem & IScreenScrollPage)[] = [
         content: <MainPage />
     },
     {
-        key: 'setting',
+        key: 'news',
+        label: '情报',
+        content: <NewsPage />
+    },
+    {
+        key: 'world',
         label: '设定',
-        content: <div className="h-screen"></div>
+        content: <WorldPage />
+    },
+    {
+        key: 'album',
+        label: '专辑',
+        content: <AlbumPage />
     },
     {
         key: 'footer',
