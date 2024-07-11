@@ -99,7 +99,7 @@ export default function SlideBox() {
             )}
         </div>
 
-        <div className='absolute bottom-0 left-0 h-1/6 w-full transition-opacity opacity-75 hover:opacity-100'>
+        <div className='absolute bottom-0 left-0 h-1/6 w-full transition-opacity opacity-50 hover:opacity-100'>
             <div className='flex w-full h-5/6 justify-center place-content-center transition hover:bg-primary-300/25'>
                 {slideboxItem.data.map((item) =>
                     <button onClick={() => handleClick(item.id - 1)}>
