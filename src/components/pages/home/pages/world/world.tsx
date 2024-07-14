@@ -1,16 +1,16 @@
 import Star from '../../../../star/star';
-import styles from './main.module.scss';
+import styles from './world.module.scss';
 
-import Page from "../../../../screen-scroll/page";
-import mergeClassName from "../../../../../../src/scripts/util/merge-class-name";
+import Page from "../../../../../../src-old/components/screen-scroll/page";
+import mergeClassName from "../../../../../scripts/util/merge-class-name";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import StarButton from '../../../../star-button/star-button';
+import StarButton from '../../../../../../src-old/components/star-button/star-button';
 import Svg from '../../../../svg/svg';
-import publicUse from '../../../../../../src/scripts/util/public-use';
+import publicUse from '../../../../../scripts/util/public-use';
 import TypeText from '../../../../type-text/type-text';
-import random from '../../../../../../src/scripts/util/random';
+import random from '../../../../../scripts/util/random';
 
 const spriteMaskValue = `url(${publicUse('/images/sprite-mask.svg')})`;
 
@@ -34,7 +34,7 @@ export const sprites: ISpriteInfo[] = [
     },
 ];
 
-export default function MainPage() {
+export default function WorldPage() {
     const [sprite, setSprite] = useState<string>('fen');
     const [dialog, setDialog] = useState<string>('');
 

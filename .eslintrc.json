@@ -67,10 +67,10 @@
       "parserOptions": {
         "sourceType": "module",
         "ecmaFeatures": {
-          "impliedStrict": true,
+          "impliedStrict": false,
           "jsx": true
         },
-        "ecmaVersion": 2022,
+        "ecmaVersion": "latest",
         "project": "./tsconfig.json"
       },
       "settings": {
@@ -82,7 +82,7 @@
         },
         "import/resolver": {
           "typescript": {},
-          "alias": [["@", "./src"]]
+          "alias": [["@", "src"]]
         }
       },
       "env": {

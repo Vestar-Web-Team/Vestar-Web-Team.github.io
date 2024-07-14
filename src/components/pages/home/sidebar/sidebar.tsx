@@ -1,5 +1,5 @@
-import Share from "../../../share/share";
-import Timeline, { ITimelineItem } from "../../../timeline/timeline";
+import Share from "../../../../../src-old/components/share/share";
+import Timeline, { ITimelineItem } from "../../../../../src-old/components/timeline/timeline";
 import { Dispatch, SetStateAction } from "react";
 
 export interface ISidebarProps {

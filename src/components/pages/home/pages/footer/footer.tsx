@@ -1,4 +1,4 @@
-import Page from "../../../../screen-scroll/page";
+import Page from "../../../../../../src-old/components/screen-scroll/page";
 
 export default function Footer() {
 

@@ -1,18 +1,18 @@
 import Star from '../../../../star/star';
 import styles from './news.module.scss';
 
-import Page from "../../../../screen-scroll/page";
+import Page from "../../../../../../src-old/components/screen-scroll/page";
 import mergeClassName from "../../../../../scripts/util/merge-class-name";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import StarButton from '../../../../star-button/star-button';
+import StarButton from '../../../../../../src-old/components/star-button/star-button';
 import Svg from '../../../../svg/svg';
-import Newsboard from '../../../../newsboard/newsboard';
+import Newsboard from '../../../../../../src-old/components/newsboard/newsboard';
 import publicUse from '../../../../../scripts/util/public-use';
 import TypeText from '../../../../type-text/type-text';
 import random from '../../../../../scripts/util/random';
-import SlideBox from '../../../../slide-box/slide-box';
+import SlideBox from '../../../../../../src-old/components/slide-box/slide-box';
 
 const spriteMaskValue = `url(${publicUse('/images/sprite-mask.svg')})`;
 
