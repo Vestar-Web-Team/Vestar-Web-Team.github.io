@@ -1,0 +1,23 @@
+* {
+  outline: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body ,#root{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+}
+
+html {
+  background-color: transparent !important;
+}
+
+.spelling-error::spelling-error, .spelling-error *::spelling-error {
+  text-decoration: wavy var(--fallback-er,oklch(var(--er)/var(--tw-bg-opacity)));
+}

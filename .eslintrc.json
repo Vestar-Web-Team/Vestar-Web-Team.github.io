@@ -1,7 +1,95 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "react-hooks/exhaustive-deps": 0,
-    "semi": 1
-  }
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:solid/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "plugins": [
+    "solid"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "ignorePatterns": [
+    "dist/*",
+    "lib/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:json/recommended",
+        "plugin:eslint-comments/recommended",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/no-unsafe-call": 0,
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "semi": 2,
+        "@typescript-eslint/no-floating-promises": 0,
+        "@typescript-eslint/no-misused-promises": 0,
+        "no-async-promise-executor": 0,
+        "@typescript-eslint/ban-types": 0,
+        "solid/reactivity": 0,
+        "@typescript-eslint/unbound-method": 0,
+        "solid/style-prop": 0,
+        "solid/self-closing-comp": 0,
+        "import/no-named-as-default": 0
+      },
+      "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "impliedStrict": true,
+          "jsx": true
+        },
+        "ecmaVersion": 2022,
+        "project": "./tsconfig.json"
+      },
+      "settings": {
+        "import/parsers": {
+          "@typescript-eslint/parser": [
+            ".ts",
+            ".tsx"
+          ]
+        },
+        "import/resolver": {
+          "typescript": {},
+          "alias": [["@", "./src"]]
+        }
+      },
+      "env": {
+        "es2022": true,
+        "browser": true,
+        "node": true
+      }
+    }
+  ]
 }
